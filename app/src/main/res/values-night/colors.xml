@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="card_background_color">#AEAEAE</color>
+    <color name="registration_field_background_color">#753DFB</color>
+    <color name="registration_field_background_color_not_focused">#956BE4</color>
+    <color name="reg_button_not_pressed">#6800DF</color>
+    <color name="reg_button_pressed">#8903FF</color>
+    <color name="load_bar_color">#8903FF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="cat_card_background_color">#FFEDED</color>
+    <color name="category_background_color">#FFF4F3</color>
+    <color name="app_logo_text_color">#FFC800</color>
+</resources>

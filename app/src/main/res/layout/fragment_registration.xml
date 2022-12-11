@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainLayout"
+    tools:context=".view.MainActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_500dp"
+        android:layout_margin="@dimen/_20dp"
+        android:elevation="@dimen/_10dp"
+        app:cardBackgroundColor="@color/card_background_color"
+        app:cardCornerRadius="@dimen/_20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10dp"
+                android:fontFamily="sans-serif"
+                android:gravity="center_horizontal"
+                android:text="@string/register_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_30sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:layout_margin="@dimen/_20dp"
+                android:background="@drawable/registration_field_background"
+                android:elevation="@dimen/_10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/name_hint"
+                android:padding="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:layout_margin="@dimen/_20dp"
+                android:background="@drawable/registration_field_background"
+                android:elevation="@dimen/_10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPhoneNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:layout_margin="@dimen/_20dp"
+                android:background="@drawable/registration_field_background"
+                android:elevation="@dimen/_10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/phone_hint"
+                android:inputType="phone"
+                android:padding="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sp" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50dp"
+                android:layout_margin="@dimen/_20dp"
+                android:background="@drawable/registration_field_background"
+                android:elevation="@dimen/_10dp"
+                android:gravity="center_vertical"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:padding="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnRegister"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20dp"
+                android:background="@drawable/create_account_button_background"
+                android:elevation="@dimen/_10dp"
+                android:paddingStart="@dimen/_10dp"
+                android:textColor="@color/white"
+                android:paddingEnd="@dimen/_10dp"
+                android:text="@string/create_account"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_20sp" />
+
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_20dp"
+        android:max="3"
+        android:progress="100"
+        android:elevation="@dimen/_40dp"
+        android:visibility="gone"
+        android:indeterminateTint="@color/load_bar_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:visibility="visible" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

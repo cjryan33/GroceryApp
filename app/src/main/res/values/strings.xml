@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">GroceryAppProjectCharles</string>
+    <string name="register_text">Register</string>
+    <string name="name_hint">Enter Name</string>
+    <string name="email_hint">Enter Email</string>
+    <string name="phone_hint">Enter Phone Number</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="create_account">Create Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_text">Login</string>
+    <string name="slash">/</string>
+    <string name="my_app_name">Quick Shop</string>
+    <string name="profile_text">Profile</string>
+    <string name="order_history_text">Order History</string>
+    <string name="wallet_text">Wallet</string>
+    <string name="terms_text"><![CDATA[Terms & Conditions]]></string>
+    <string name="help_text">Help</string>
+    <string name="logout_text">Logout</string>
+    <string name="search_text">Search</string>
+    <string name="main_app_text_logo">QuickShop</string>
+</resources>
