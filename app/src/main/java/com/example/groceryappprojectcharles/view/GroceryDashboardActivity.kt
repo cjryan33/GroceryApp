@@ -143,5 +143,6 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
             binding.progressBar.visibility = View.VISIBLE
         } else
             binding.progressBar.visibility = View.GONE
+
     }
 }
