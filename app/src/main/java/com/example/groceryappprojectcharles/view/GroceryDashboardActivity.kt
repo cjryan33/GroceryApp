@@ -5,9 +5,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.groceryappprojectcharles.R
 import com.example.groceryappprojectcharles.databinding.ActivityGroceryDashboardBinding
 import com.example.groceryappprojectcharles.model.local.AppDatabase
@@ -16,12 +18,21 @@ import com.example.groceryappprojectcharles.model.remote.Constants.LOGIN_SHARED_
 import com.example.groceryappprojectcharles.model.remote.volleyhandlers.CategoryVolleyHandler
 import com.example.groceryappprojectcharles.presenter.category.CategoryMVP
 import com.example.groceryappprojectcharles.presenter.category.CategoryPresenter
-import com.example.groceryappprojectcharles.model.remote.CategoryAdapter
+import com.example.groceryappprojectcharles.model.remote.adapters.CategoryAdapter
+import com.example.groceryappprojectcharles.model.remote.adapters.SearchAdapter
+import com.example.groceryappprojectcharles.model.remote.data.SearchData
+import com.example.groceryappprojectcharles.model.remote.response.SearchResponse
+import com.example.groceryappprojectcharles.model.remote.volleyhandlers.SearchVolleyHandler
+import com.example.groceryappprojectcharles.presenter.search.SearchMVP
+import com.example.groceryappprojectcharles.presenter.search.SearchPresenter
 
-class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView {
+class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, SearchMVP.SearchView  {
     private lateinit var binding: ActivityGroceryDashboardBinding
-    private lateinit var presenter: CategoryPresenter
+    private lateinit var catPresenter: CategoryPresenter
+    private lateinit var searchPresenter: SearchPresenter
     private lateinit var catAdapter: CategoryAdapter
+    private lateinit var searchAdapter: SearchAdapter
+
     private var categoryDao: CategoryDao? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,17 +46,17 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView {
     }
 
     private fun setupEvents() {
+        searchPresenter = SearchPresenter(SearchVolleyHandler(this@GroceryDashboardActivity),this )
         binding.apply {
             btnSearch.setOnClickListener {
-                val intent = Intent(applicationContext,SearchProductActivity::class.java)
-                intent.putExtra("search", edtSearch.text.toString())
+               searchPresenter.searchProduct(edtSearch.text.toString().trim())
             }
         }
     }
 
     private fun setupCategories() {
-        presenter = CategoryPresenter(CategoryVolleyHandler(this), this)
-        presenter.categoryCall()
+        catPresenter = CategoryPresenter(CategoryVolleyHandler(this), this)
+        catPresenter.categoryCall()
         val categoryList = categoryDao?.getAllCategories()
         catAdapter = CategoryAdapter(this,categoryList!!)
         binding.rvCategories.layoutManager = GridLayoutManager(this,2)
@@ -110,6 +121,21 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView {
 
     override fun setResult(message: String) {
 
+    }
+
+    override fun setSearchResult(searchResponse: SearchResponse) {
+        val searchList = mutableListOf<SearchData>()
+        for (i in searchResponse.data.indices) {
+            searchList.add(searchResponse.data[i])
+        }
+        searchAdapter = SearchAdapter(this, searchList)
+        binding.apply {
+            rvCategories.visibility = View.GONE
+            svDeals.visibility=View.GONE
+            rvSearch.visibility = View.VISIBLE
+            rvSearch.layoutManager = LinearLayoutManager(this@GroceryDashboardActivity)
+            rvSearch.adapter = searchAdapter
+        }
     }
 
     override fun onLoad(isLoading: Boolean) {

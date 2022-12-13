@@ -1,4 +1,4 @@
-package com.example.groceryappprojectcharles.model.remote
+package com.example.groceryappprojectcharles.model.remote.response
 
 import com.example.groceryappprojectcharles.model.local.entity.Category
 

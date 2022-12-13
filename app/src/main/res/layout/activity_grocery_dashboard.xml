@@ -9,22 +9,22 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.17"/>
+            app:layout_constraintGuide_percent="0.17" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/reg_button_not_pressed"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@color/reg_button_not_pressed">
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/txtToolbar"
@@ -40,31 +40,40 @@
             android:id="@+id/edtSearch"
             android:layout_width="@dimen/_350dp"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             android:layout_margin="@dimen/_10dp"
-            android:padding="@dimen/_10dp"
             android:background="@drawable/search_bar_background"
-            android:hint="@string/search_text"/>
+            android:hint="@string/search_text"
+            android:padding="@dimen/_10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btnSearch"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintStart_toEndOf="@+id/edtSearch"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/edtSearch"
-            android:src="@drawable/ic_baseline_search_24"
-            android:padding="@dimen/_10dp"
             android:background="@color/reg_button_not_pressed"
-            app:layout_constraintBottom_toBottomOf="@id/edtSearch"/>
+            android:padding="@dimen/_10dp"
+            android:src="@drawable/ic_baseline_search_24"
+            app:layout_constraintBottom_toBottomOf="@id/edtSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edtSearch"
+            app:layout_constraintTop_toTopOf="@id/edtSearch" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearch"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/_10dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategories"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_250dp"
             android:layout_margin="@dimen/_10dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
         <HorizontalScrollView
             android:id="@+id/svDeals"
@@ -82,45 +91,50 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/_20sp"
-                    android:layout_margin="@dimen/_5dp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5dp"
-                    android:textSize="@dimen/_20sp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5dp"
-                    android:textSize="@dimen/_20sp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5dp"
-                    android:textSize="@dimen/_20sp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5dp"
-                    android:textSize="@dimen/_20sp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/_5dp"
-                    android:textSize="@dimen/_20sp"
                     android:layout_gravity="center"
-                    android:text="Deal item"/>
+                    android:layout_margin="@dimen/_5dp"
+                    android:text="Deal item"
+                    android:textSize="@dimen/_20sp" />
 
             </LinearLayout>
 
@@ -128,13 +142,14 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:menu="@menu/nav_features"/>
+        app:menu="@menu/nav_features" />
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

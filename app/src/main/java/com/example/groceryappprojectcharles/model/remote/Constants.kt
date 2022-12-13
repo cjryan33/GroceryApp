@@ -5,6 +5,7 @@ object Constants {
     const val REGISTRATION_END_POINT = "auth/register"
     const val CATEGORY_END_POINT = "category"
     const val LOGIN_END_POINT = "auth/login"
+    const val SEARCH_END_POINT = "products/search/"
     const val FIRST_NAME = "firstName"
     const val EMAIL = "email"
     const val PHONE_NUMBER = "mobile"

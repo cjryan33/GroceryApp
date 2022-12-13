@@ -16,4 +16,6 @@
     <dimen name="_110dp">110dp</dimen>
     <dimen name="_2dp">2dp</dimen>
     <dimen name="_40sp">40sp</dimen>
+    <dimen name="_16dp">16dp</dimen>
+    <dimen name="_24sp">24sp</dimen>
 </resources>

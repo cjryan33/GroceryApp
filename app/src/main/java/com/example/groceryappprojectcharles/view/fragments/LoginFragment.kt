@@ -14,7 +14,7 @@ import com.example.groceryappprojectcharles.model.remote.Constants.EMAIL
 import com.example.groceryappprojectcharles.model.remote.Constants.LOGIN_SHARED_PREF
 import com.example.groceryappprojectcharles.model.remote.Constants.PASSWORD
 import com.example.groceryappprojectcharles.model.remote.volleyhandlers.LoginVolleyHandler
-import com.example.groceryappprojectcharles.model.remote.User
+import com.example.groceryappprojectcharles.model.remote.data.LoginData
 import com.example.groceryappprojectcharles.presenter.login.LoginMVP
 import com.example.groceryappprojectcharles.presenter.login.LoginPresenter
 import com.example.groceryappprojectcharles.view.GroceryDashboardActivity
@@ -42,7 +42,7 @@ class LoginFragment : Fragment(), LoginMVP.LoginView {
             btnLoginFrag.setOnClickListener {
                 val email = edtEmailLogin.text.toString()
                 val password = edtPasswordLogin.text.toString()
-                val user = User(email, password)
+                val user = LoginData(email, password)
                 presenter.loginUser(user)
             }
 

@@ -13,7 +13,7 @@ import com.example.groceryappprojectcharles.model.remote.Constants.MESSAGE_RESPO
 import com.example.groceryappprojectcharles.model.remote.Constants.PASSWORD
 import com.example.groceryappprojectcharles.model.remote.Constants.PHONE_NUMBER
 import com.example.groceryappprojectcharles.model.remote.Constants.REGISTRATION_END_POINT
-import com.example.groceryappprojectcharles.model.remote.Data
+import com.example.groceryappprojectcharles.model.remote.data.RegisterData
 import com.example.groceryappprojectcharles.model.remote.OperationalCallback
 import org.json.JSONObject
 
@@ -21,7 +21,7 @@ class RegistrationVolleyHandler(private val context: Context) {
 
     private var requestQueue: RequestQueue = Volley.newRequestQueue(context)
 
-    fun registerUser(data: Data, callback: OperationalCallback) : String {
+    fun registerUser(data: RegisterData, callback: OperationalCallback) : String {
         val url = BASE_URL + REGISTRATION_END_POINT
         val userData = JSONObject()
         var message: String? = null

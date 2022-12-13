@@ -1,8 +1,7 @@
-package com.example.groceryappprojectcharles.model.remote
+package com.example.groceryappprojectcharles.model.remote.adapters
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,12 +21,10 @@ class CategoryAdapter(private val context: Context, private val categoryList: Mu
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val layoutInflater = LayoutInflater.from(context)
         binding = CategoryItemBinding.inflate(layoutInflater, parent, false)
-        Log.i("tag","onCreateViewHolder")
         return CategoryViewHolder(binding.root)
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        Log.i("tag","BindViewHolder called")
         holder.apply {
             val category = categoryList[position]
             bind(category)

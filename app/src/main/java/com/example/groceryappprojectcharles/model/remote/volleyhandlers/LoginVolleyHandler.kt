@@ -8,13 +8,13 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.groceryappprojectcharles.model.remote.Constants
 import com.example.groceryappprojectcharles.model.remote.OperationalCallback
-import com.example.groceryappprojectcharles.model.remote.User
+import com.example.groceryappprojectcharles.model.remote.data.LoginData
 import org.json.JSONObject
 
 class LoginVolleyHandler(private val context: Context) {
     private var requestQueue: RequestQueue = Volley.newRequestQueue(context)
 
-    fun loginUser(user: User, callback: OperationalCallback) : String {
+    fun loginUser(user: LoginData, callback: OperationalCallback) : String {
         val url = Constants.BASE_URL + Constants.LOGIN_END_POINT
         val userData = JSONObject()
         var message: String? = null

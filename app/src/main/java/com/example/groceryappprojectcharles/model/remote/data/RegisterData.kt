@@ -1,6 +1,6 @@
-package com.example.groceryappprojectcharles.model.remote
+package com.example.groceryappprojectcharles.model.remote.data
 
-data class Data(
+data class RegisterData(
     val email: String,
     val firstName: String,
     val mobile: String,

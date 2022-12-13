@@ -1,10 +1,10 @@
 package com.example.groceryappprojectcharles.presenter.registration
 
-import com.example.groceryappprojectcharles.model.remote.Data
+import com.example.groceryappprojectcharles.model.remote.data.RegisterData
 
 interface RegistrationMVP {
     interface RegistrationPresenter {
-        fun registerUser(data: Data): String
+        fun registerUser(data: RegisterData): String
     }
 
     interface RegistrationView {
