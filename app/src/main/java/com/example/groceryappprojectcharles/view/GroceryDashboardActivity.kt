@@ -139,6 +139,9 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
     }
 
     override fun onLoad(isLoading: Boolean) {
-
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else
+            binding.progressBar.visibility = View.GONE
     }
 }
