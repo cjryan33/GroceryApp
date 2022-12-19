@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/street"
+            android:id="@+id/edtStreet"
+            android:paddingStart="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:textSize="@dimen/_20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/city"
+            android:id="@+id/edtCity"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:paddingStart="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:textSize="@dimen/_20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/state"
+            android:id="@+id/edtState"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:paddingStart="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:textSize="@dimen/_20sp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/zipcode"
+            android:id="@+id/"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:paddingStart="@dimen/_10dp"
+            android:inputType="number"
+            android:background="@drawable/search_bar_background"
+            android:textSize="@dimen/_20sp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
