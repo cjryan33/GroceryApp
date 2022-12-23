@@ -18,3 +18,10 @@ My Grocery App. first big project!
 7. Order History Screen
     - Order Details - unfinished
 8. Logout Button
+
+## Screenshots
+<img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_7.png" height="560" width="290" hspace="40"> <img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_8.png" height="560" width="290" hspace="40">
+<img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img.png" height="560" width="290" hspace="40"> <img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_1.png" height="560" width="290" hspace="40">
+<img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_2.png" height="560" width="290" hspace="40"> <img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_3.png" height="560" width="290" hspace="40">
+<img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_4.png" height="560" width="290" hspace="40"> <img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_5.png" height="560" width="290" hspace="40">
+<img src="https://github.com/cjryan33/GroceryApp/blob/master/app/src/main/assets/img_6.png" height="560" width="290" hspace="40">
