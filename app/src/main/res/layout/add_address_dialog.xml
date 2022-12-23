@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,44 +10,74 @@
         android:layout_margin="@dimen/_10dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edtNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/nickname"
+            android:maxLength="16"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+        <EditText
+            android:id="@+id/edtHouseNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/house_number"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/street"
             android:id="@+id/edtStreet"
-            android:paddingStart="@dimen/_10dp"
-            android:layout_marginBottom="@dimen/_10dp"
-            android:background="@drawable/search_bar_background"
-            android:textSize="@dimen/_20sp"/>
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/city"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/street"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+        <EditText
+            android:id="@+id/edtType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/address_type"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+        <EditText
             android:id="@+id/edtCity"
-            android:layout_marginBottom="@dimen/_10dp"
-            android:paddingStart="@dimen/_10dp"
-            android:background="@drawable/search_bar_background"
-            android:textSize="@dimen/_20sp"/>
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/state"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/city"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+        <EditText
             android:id="@+id/edtState"
-            android:layout_marginBottom="@dimen/_10dp"
-            android:paddingStart="@dimen/_10dp"
-            android:background="@drawable/search_bar_background"
-            android:textSize="@dimen/_20sp"/>
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/zipcode"
-            android:id="@+id/"
             android:layout_marginBottom="@dimen/_10dp"
-            android:paddingStart="@dimen/_10dp"
-            android:inputType="number"
             android:background="@drawable/search_bar_background"
-            android:textSize="@dimen/_20sp"/>
+            android:hint="@string/state"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+        <EditText
+            android:id="@+id/edtZipcode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/zipcode"
+            android:inputType="number"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
 
     </LinearLayout>
 

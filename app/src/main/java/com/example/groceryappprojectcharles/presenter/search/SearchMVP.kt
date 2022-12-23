@@ -10,6 +10,6 @@ interface SearchMVP {
 
     interface SearchView {
         fun setSearchResult(searchResponse: SearchResponse)
-        fun onLoad(isLoading: Boolean)
+        fun onSearchLoad(isLoading: Boolean)
     }
 }

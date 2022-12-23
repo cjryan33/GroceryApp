@@ -7,7 +7,7 @@ import com.example.groceryappprojectcharles.view.fragments.BarbequeFragment
 import com.example.groceryappprojectcharles.view.fragments.CombosFragment
 import com.example.groceryappprojectcharles.view.fragments.FriedFragment
 
-class SubCatFragmentAdapter(fm: FragmentManager, val subCount:Int) : FragmentPagerAdapter(fm) {
+class SubCatChickenFragmentAdapter(fm: FragmentManager, private val subCount:Int) : FragmentPagerAdapter(fm) {
     override fun getCount(): Int {
         return subCount
     }

@@ -1,4 +1,4 @@
-package com.example.groceryappprojectcharles.model.remote.response
+package com.example.groceryappprojectcharles.model.remote.data
 
 data class User(
     val __v: Int,

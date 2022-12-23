@@ -44,4 +44,5 @@ class SplashScreenActivity : AppCompatActivity() {
         }, 2500)
 
     }
+
 }

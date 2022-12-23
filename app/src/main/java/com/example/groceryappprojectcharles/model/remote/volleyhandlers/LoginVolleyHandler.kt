@@ -9,6 +9,8 @@ import com.android.volley.toolbox.Volley
 import com.example.groceryappprojectcharles.model.remote.Constants
 import com.example.groceryappprojectcharles.model.remote.OperationalCallback
 import com.example.groceryappprojectcharles.model.remote.data.LoginData
+import com.example.groceryappprojectcharles.model.remote.response.LoginResponse
+import com.google.gson.Gson
 import org.json.JSONObject
 
 class LoginVolleyHandler(private val context: Context) {
@@ -29,7 +31,9 @@ class LoginVolleyHandler(private val context: Context) {
             {
                     response: JSONObject ->
                 message = "success"
-                callback.onSuccess(message.toString())
+                val gson = Gson()
+                val loginResponse : LoginResponse = gson.fromJson(response.toString(),LoginResponse::class.java)
+                callback.onSuccess(message.toString(), loginResponse)
             },
             {
                     error: VolleyError ->

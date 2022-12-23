@@ -1,6 +1,7 @@
 package com.example.groceryappprojectcharles.model.remote.response
 
-data class Data(
+
+data class OrderData(
     val __v: Int,
     val _id: String,
     val date: String,

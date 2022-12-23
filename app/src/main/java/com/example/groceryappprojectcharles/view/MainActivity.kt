@@ -2,14 +2,12 @@ package com.example.groceryappprojectcharles.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.groceryappprojectcharles.R
 import com.example.groceryappprojectcharles.databinding.ActivityMainBinding
-import com.example.groceryappprojectcharles.presenter.registration.RegistrationMVP
 import com.example.groceryappprojectcharles.view.fragments.LoginFragment
 import com.example.groceryappprojectcharles.view.fragments.RegistrationFragment
 
-class MainActivity : AppCompatActivity(), RegistrationMVP.RegistrationView {
+class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
     private lateinit var regFragment: RegistrationFragment
     private lateinit var loginFragment: LoginFragment
@@ -36,13 +34,5 @@ class MainActivity : AppCompatActivity(), RegistrationMVP.RegistrationView {
            }
 
        }
-    }
-
-    override fun setResult(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onLoad(isLoading: Boolean) {
-
     }
 }

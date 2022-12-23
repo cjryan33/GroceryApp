@@ -5,5 +5,5 @@ data class OrderSummary(
     val deliveryCharges: Int,
     val discount: Int,
     val ourPrice: Int,
-    val totalAmount: Int
+    val totalAmount: Float
 )

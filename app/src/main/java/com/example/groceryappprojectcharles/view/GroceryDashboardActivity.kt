@@ -14,6 +14,7 @@ import com.example.groceryappprojectcharles.R
 import com.example.groceryappprojectcharles.databinding.ActivityGroceryDashboardBinding
 import com.example.groceryappprojectcharles.model.local.AppDatabase
 import com.example.groceryappprojectcharles.model.local.dao.CategoryDao
+import com.example.groceryappprojectcharles.model.local.entity.Category
 import com.example.groceryappprojectcharles.model.remote.Constants.LOGIN_SHARED_PREF
 import com.example.groceryappprojectcharles.model.remote.volleyhandlers.CategoryVolleyHandler
 import com.example.groceryappprojectcharles.presenter.category.CategoryMVP
@@ -21,16 +22,17 @@ import com.example.groceryappprojectcharles.presenter.category.CategoryPresenter
 import com.example.groceryappprojectcharles.model.remote.adapters.CategoryAdapter
 import com.example.groceryappprojectcharles.model.remote.adapters.SearchAdapter
 import com.example.groceryappprojectcharles.model.remote.data.SearchData
+import com.example.groceryappprojectcharles.model.remote.response.CategoryResponse
 import com.example.groceryappprojectcharles.model.remote.response.SearchResponse
 import com.example.groceryappprojectcharles.model.remote.volleyhandlers.SearchVolleyHandler
 import com.example.groceryappprojectcharles.presenter.search.SearchMVP
 import com.example.groceryappprojectcharles.presenter.search.SearchPresenter
 
-class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, SearchMVP.SearchView  {
+class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView,
+    SearchMVP.SearchView {
     private lateinit var binding: ActivityGroceryDashboardBinding
     private lateinit var catPresenter: CategoryPresenter
     private lateinit var searchPresenter: SearchPresenter
-    private lateinit var catAdapter: CategoryAdapter
     private lateinit var searchAdapter: SearchAdapter
 
     private var categoryDao: CategoryDao? = null
@@ -46,10 +48,15 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
     }
 
     private fun setupEvents() {
-        searchPresenter = SearchPresenter(SearchVolleyHandler(this@GroceryDashboardActivity),this )
+        searchPresenter = SearchPresenter(SearchVolleyHandler(this@GroceryDashboardActivity), this)
+        binding.txtDeals.visibility = View.VISIBLE
         binding.apply {
+            imgCart.setOnClickListener {
+                val intent = Intent(this@GroceryDashboardActivity, CartActivity::class.java)
+                startActivity(intent)
+            }
             btnSearch.setOnClickListener {
-               searchPresenter.searchProduct(edtSearch.text.toString().trim())
+                searchPresenter.searchProduct(edtSearch.text.toString().trim())
             }
         }
     }
@@ -57,11 +64,6 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
     private fun setupCategories() {
         catPresenter = CategoryPresenter(CategoryVolleyHandler(this), this)
         catPresenter.categoryCall()
-        val categoryList = categoryDao?.getAllCategories()
-        catAdapter = CategoryAdapter(this,categoryList!!)
-        binding.rvCategories.layoutManager = GridLayoutManager(this,2)
-        binding.rvCategories.adapter = catAdapter
-
     }
 
     private fun setupNavDrawer() {
@@ -72,7 +74,7 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
             setDisplayShowTitleEnabled(false)
         }
 
-        var logoutDialog = setupLogoutDialog()
+        val logoutDialog = setupLogoutDialog()
 
         binding.navView.setNavigationItemSelectedListener { menuItems ->
             when (menuItems.itemId) {
@@ -80,25 +82,37 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
                     binding.drawerLayout.closeDrawer(GravityCompat.START)
                     logoutDialog.show()
                 }
+                R.id.navCart -> {
+                    val intent = Intent(this,CartActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.navHome -> {
+                    val intent = Intent(this,GroceryDashboardActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.navOrderHistory -> {
+                    val intent = Intent(this,AllOrdersActivity::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
     }
 
     private fun setupLogoutDialog(): AlertDialog.Builder {
-        var alertDialog = AlertDialog.Builder(this)
+        val alertDialog = AlertDialog.Builder(this)
         alertDialog.setTitle("Logout?")
         alertDialog.setPositiveButton("Confirm") { _, _ ->
             val sharedPref =
                 application.getSharedPreferences(LOGIN_SHARED_PREF, Context.MODE_PRIVATE)
             val editor = sharedPref.edit()
             editor.clear()
-            editor.commit()
+            editor.apply()
             val intent = Intent(application, MainActivity::class.java)
             startActivity(intent)
         }
-        alertDialog.setNegativeButton("Cancel") { _, _ ->
-            //do nothing
+        alertDialog.setNegativeButton("Cancel") { d, _ ->
+            d.dismiss()
         }
         return alertDialog
     }
@@ -119,9 +133,6 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
         categoryDao = appDB?.getCategoryDao()
     }
 
-    override fun setResult(message: String) {
-
-    }
 
     override fun setSearchResult(searchResponse: SearchResponse) {
         val searchList = mutableListOf<SearchData>()
@@ -130,11 +141,31 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
         }
         searchAdapter = SearchAdapter(this, searchList)
         binding.apply {
+            txtDeals.visibility = View.GONE
             rvCategories.visibility = View.GONE
-            svDeals.visibility=View.GONE
+            svDeals.visibility = View.GONE
             rvSearch.visibility = View.VISIBLE
             rvSearch.layoutManager = LinearLayoutManager(this@GroceryDashboardActivity)
             rvSearch.adapter = searchAdapter
+        }
+    }
+
+    override fun onSearchLoad(isLoading: Boolean) {
+        if (isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else
+            binding.progressBar.visibility = View.GONE
+    }
+
+    override fun setResult(categoryResponse: CategoryResponse) {
+        val categoryList = mutableListOf<Category>()
+        for (i in categoryResponse.data.indices){
+            categoryList.add(categoryResponse.data[i])
+        }
+        val adapter = CategoryAdapter(this,categoryList)
+        binding.apply {
+            rvCategories.layoutManager = GridLayoutManager(this@GroceryDashboardActivity,2)
+            rvCategories.adapter = adapter
         }
     }
 
@@ -143,6 +174,5 @@ class GroceryDashboardActivity : AppCompatActivity(), CategoryMVP.CategoryView, 
             binding.progressBar.visibility = View.VISIBLE
         } else
             binding.progressBar.visibility = View.GONE
-
     }
 }

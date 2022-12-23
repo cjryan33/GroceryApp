@@ -16,4 +16,5 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="category_background_color">#FFF4F3</color>
     <color name="app_logo_text_color">#8E0000</color>
+    <color name="cart_edit_text">#2DA4FF</color>
 </resources>

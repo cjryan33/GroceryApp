@@ -8,19 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.example.groceryappprojectcharles.databinding.FragmentLoginBinding
 import com.example.groceryappprojectcharles.model.remote.Constants.EMAIL
 import com.example.groceryappprojectcharles.model.remote.Constants.LOGIN_SHARED_PREF
 import com.example.groceryappprojectcharles.model.remote.Constants.PASSWORD
+import com.example.groceryappprojectcharles.model.remote.Constants.TOKEN
+import com.example.groceryappprojectcharles.model.remote.Constants.USER_ID
 import com.example.groceryappprojectcharles.model.remote.volleyhandlers.LoginVolleyHandler
 import com.example.groceryappprojectcharles.model.remote.data.LoginData
+import com.example.groceryappprojectcharles.model.remote.response.LoginResponse
 import com.example.groceryappprojectcharles.presenter.login.LoginMVP
 import com.example.groceryappprojectcharles.presenter.login.LoginPresenter
 import com.example.groceryappprojectcharles.view.GroceryDashboardActivity
 import com.google.android.material.snackbar.Snackbar
 
-class LoginFragment : Fragment(), LoginMVP.LoginView {
+class   LoginFragment : Fragment(), LoginMVP.LoginView {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var presenter: LoginPresenter
     private lateinit var loginSharedPreferences: SharedPreferences
@@ -34,7 +36,7 @@ class LoginFragment : Fragment(), LoginMVP.LoginView {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view = binding.root
         presenter = LoginPresenter(LoginVolleyHandler(requireContext()), this)
@@ -51,15 +53,16 @@ class LoginFragment : Fragment(), LoginMVP.LoginView {
         return view
     }
 
-    override fun setResult(message: String) {
+    override fun setResult(message: String, loginResponse: LoginResponse) {
         if (message == "success") {
-            Toast.makeText(requireContext(), "Logged in Successfully", Toast.LENGTH_SHORT).show()
             loginSharedPreferences =
                 requireContext().getSharedPreferences(LOGIN_SHARED_PREF, Context.MODE_PRIVATE)
-            var editor = loginSharedPreferences.edit()
+            val editor = loginSharedPreferences.edit()
             editor.putString(EMAIL, binding.edtEmailLogin.text.toString())
             editor.putString(PASSWORD, binding.edtPasswordLogin.text.toString())
-            editor.commit()
+            editor.putString(USER_ID, loginResponse.user._id)
+            editor.putString(TOKEN, loginResponse.token)
+            editor.apply()
             val intent = Intent(requireContext(), GroceryDashboardActivity::class.java)
             startActivity(intent)
         } else {

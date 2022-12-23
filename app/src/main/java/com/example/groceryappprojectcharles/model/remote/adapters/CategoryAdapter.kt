@@ -31,7 +31,8 @@ class CategoryAdapter(private val context: Context, private val categoryList: Mu
 
             itemView.setOnClickListener {
                 val intent = Intent(context,SubCategoryActivity::class.java)
-                intent.putExtra("category",category)
+                intent.putExtra("catId",category.catId)
+                intent.putExtra("catName",category.catName)
                 context.startActivity(intent)
             }
         }

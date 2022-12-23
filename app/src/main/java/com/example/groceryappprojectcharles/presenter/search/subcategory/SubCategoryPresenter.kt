@@ -1,4 +1,4 @@
-package com.example.groceryappprojectcharles.presenter.subcategory
+package com.example.groceryappprojectcharles.presenter.search.subcategory
 
 import com.example.groceryappprojectcharles.model.remote.OperationalCallback
 import com.example.groceryappprojectcharles.model.remote.response.SubCatResponse
@@ -8,7 +8,7 @@ import com.example.groceryappprojectcharles.model.remote.volleyhandlers.SubCateg
 class SubCategoryPresenter(
     private val subCategoryVolleyHandler: SubCategoryVolleyHandler,
     private val subCategoryView: SubCategoryMVP.SubCategoryView
-) :SubCategoryMVP.SubCategoryPresenter {
+) : SubCategoryMVP.SubCategoryPresenter {
     override fun getSubCategories(catId: Int): String {
         subCategoryView.onSubCategoryLoad(true)
         val message = subCategoryVolleyHandler.getSubCategories(catId, object : OperationalCallback.SubCategory{

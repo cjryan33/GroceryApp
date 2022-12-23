@@ -11,7 +11,6 @@ import com.example.groceryappprojectcharles.model.remote.OperationalCallback
 import com.example.groceryappprojectcharles.model.remote.data.SearchData
 import com.example.groceryappprojectcharles.model.remote.response.SearchResponse
 import com.google.gson.Gson
-import org.json.JSONObject
 
 class SearchVolleyHandler( val context:Context) {
     private var requestQueue: RequestQueue = Volley.newRequestQueue(context)
@@ -19,7 +18,7 @@ class SearchVolleyHandler( val context:Context) {
 
     fun searchProduct(search: String, callback: OperationalCallback.Search){
         val url = Constants.BASE_URL + Constants.SEARCH_END_POINT + search
-        var message: String? = null
+        val message: String? = null
 
         val request = StringRequest(
             Request.Method.GET,

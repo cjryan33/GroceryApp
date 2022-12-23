@@ -9,15 +9,15 @@ class SearchPresenter(
     private val searchView: SearchMVP.SearchView
 ) : SearchMVP.SearchPresenter{
     override fun searchProduct(search: String): String {
-        searchView.onLoad(true)
+        searchView.onSearchLoad(true)
         val message = searchVolleyHandler.searchProduct(search, object : OperationalCallback.Search {
             override fun onSearchSuccess(searchResponse: SearchResponse) {
-                searchView.onLoad(false)
+                searchView.onSearchLoad(false)
                 searchView.setSearchResult(searchResponse)
             }
 
             override fun onError(message: String) {
-                searchView.onLoad(false)
+                searchView.onSearchLoad(false)
             }
         })
         return message.toString()

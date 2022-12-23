@@ -5,56 +5,58 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.groceryappprojectcharles.R
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.groceryappprojectcharles.databinding.FragmentFriedBinding
+import com.example.groceryappprojectcharles.model.remote.adapters.SubCatAdapter
+import com.example.groceryappprojectcharles.model.remote.data.ProductsBySubID
+import com.example.groceryappprojectcharles.model.remote.response.ProductsBySubIDResponse
+import com.example.groceryappprojectcharles.model.remote.volleyhandlers.ProductBySubIdVolleyHandler
+import com.example.groceryappprojectcharles.presenter.product_by_sub_id.ProductBySubIdMVP
+import com.example.groceryappprojectcharles.presenter.product_by_sub_id.ProductBySubIdPresenter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CombosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CombosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class CombosFragment : Fragment(), ProductBySubIdMVP.ProductBySubIdView {
+    private lateinit var binding: FragmentFriedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        initView()
+    }
+
+    private fun initView() {
+        val presenter = ProductBySubIdPresenter(ProductBySubIdVolleyHandler(requireContext()),this)
+        presenter.getProductsBySubId(3)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_combos, container, false)
+        binding = FragmentFriedBinding.inflate(inflater,container,false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CombosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CombosFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onResume() {
+        super.onResume()
+        initView()
+    }
+    override fun setResult(productsBySubIDResponse: ProductsBySubIDResponse) {
+        val productList = mutableListOf<ProductsBySubID>()
+        if(productsBySubIDResponse.count!=0){
+            for (i in productsBySubIDResponse.data.indices) {
+                productList.add(productsBySubIDResponse.data[i])
             }
+            val adapter = SubCatAdapter(requireContext(),productList)
+            binding.rvItems.layoutManager = LinearLayoutManager(requireContext())
+            binding.rvItems.adapter = adapter
+        } else {
+            binding.rvItems.visibility = View.GONE
+            binding.txtNoItems.visibility = View.VISIBLE
+        }
+
+    }
+
+    override fun onLoad(isLoading: Boolean) {
+
     }
 }

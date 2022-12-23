@@ -15,6 +15,8 @@ import com.example.groceryappprojectcharles.model.remote.Constants.PHONE_NUMBER
 import com.example.groceryappprojectcharles.model.remote.Constants.REGISTRATION_END_POINT
 import com.example.groceryappprojectcharles.model.remote.data.RegisterData
 import com.example.groceryappprojectcharles.model.remote.OperationalCallback
+import com.example.groceryappprojectcharles.model.remote.data.User
+import com.example.groceryappprojectcharles.model.remote.response.LoginResponse
 import org.json.JSONObject
 
 class RegistrationVolleyHandler(private val context: Context) {
@@ -38,7 +40,8 @@ class RegistrationVolleyHandler(private val context: Context) {
             {
             response: JSONObject ->
                 message = response.getString(MESSAGE_RESPONSE)
-                callback.onSuccess(message.toString())
+                val dummy = LoginResponse("x", User(1,"","","","","",""))
+                callback.onSuccess(message.toString(), dummy)
             },
             {
                 error: VolleyError ->

@@ -27,7 +27,7 @@ class RegistrationFragment : Fragment() , RegistrationMVP.RegistrationView{
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         val view = binding.root
         presenter = RegistrationPresenter(RegistrationVolleyHandler(requireContext()),this)

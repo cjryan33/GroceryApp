@@ -1,4 +1,4 @@
-package com.example.groceryappprojectcharles.presenter.subcategory
+package com.example.groceryappprojectcharles.presenter.search.subcategory
 
 import com.example.groceryappprojectcharles.model.remote.response.SearchResponse
 import com.example.groceryappprojectcharles.model.remote.response.SubCatResponse

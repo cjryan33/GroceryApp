@@ -1,15 +1,15 @@
 package com.example.groceryappprojectcharles.model.remote.data
 
-data class Data(
+data class ProductsBySubID(
     val __v: Int,
     val _id: String,
     val catId: Int,
     val created: String,
     val description: String,
     val image: String,
-    val mrp: Int,
+    val mrp: Float,
     val position: Int,
-    val price: Int,
+    val price: Float,
     val productName: String,
     val quantity: Int,
     val status: Boolean,

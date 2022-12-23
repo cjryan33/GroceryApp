@@ -1,6 +1,6 @@
 package com.example.groceryappprojectcharles.model.remote.data
 
-data class Data(
+data class SubCategoryData(
     val __v: Int,
     val _id: String,
     val catId: Int,

@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+        <EditText
+            android:id="@+id/edtNickname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/nickname"
+            android:maxLength="16"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+        <EditText
+            android:id="@+id/edtCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/card_number"
+            android:inputType="number"
+            android:maxLength="16"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+        <EditText
+            android:id="@+id/edtCVV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/cvv"
+            android:inputType="number"
+            android:maxLength="3"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+        <EditText
+            android:id="@+id/edtExpDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/search_bar_background"
+            android:hint="@string/exp_date"
+            android:padding="@dimen/_10dp"
+            android:textSize="@dimen/_20sp" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
